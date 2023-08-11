@@ -6,9 +6,6 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { URL } from '../../config/URL';
 
-sessionStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyODNlYmQ2LTdkZGUtNGE4NS1hNTAzLWQ5NTZiM2NiZTcwNCIsIm5hbWUiOiJsYW5nZ2VuZyIsImVtYWlsIjoibGFuZ2dlbmdAZ21haWwuY29tIiwicm9sZV9uYW1lIjoidXNlciIsInBob3RvIjpudWxsLCJwaG90b19pZCI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjMtMDgtMDVUMTE6MTE6NDkuMDM4WiIsInVwZGF0ZWRfYXQiOm51bGwsImRlbGV0ZWRfYXQiOm51bGwsImlhdCI6MTY5MTQ5NjM1NiwiZXhwIjoxNjkxNTgyNzU2fQ.rN1b08D4u99__5Lxo0lvxQ-BY6C5lc0XcGm9k3SSMhs")
-let token = sessionStorage.getItem("token");
-
 export default function EditRecipe() {
     const {id} = useParams();
     const ref = useRef(null);
