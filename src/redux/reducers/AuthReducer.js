@@ -1,12 +1,10 @@
-const initialState = {
-    data: null,
-    errorMessage: ''
-}
+import initialState from './../../pages/config/InitialState.js';
 
 export const loginReducer = (state = initialState, action) => {
     if (action.type === 'LOGIN_PENDING') {
         return {
-            ...state
+            ...state,
+            isLoading: true
         }
     }
 
@@ -32,7 +30,8 @@ export const loginReducer = (state = initialState, action) => {
 export const registerReducer = (state = initialState, action) => {
     if (action.type === 'REGISTER_PENDING') {
         return {
-            ...state
+            ...state,
+            isLoading: true
         }
     }
 

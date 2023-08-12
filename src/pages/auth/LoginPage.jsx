@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './../assets/css/login.css';
 import { useDispatch, useSelector } from 'react-redux';
-import {loginAction} from './../../redux/actions/AuthAction.jsx';
+import {loginAction} from './../../redux/actions/AuthAction.js';
 
 export default function LoginPage() {
     const navigate = useNavigate();

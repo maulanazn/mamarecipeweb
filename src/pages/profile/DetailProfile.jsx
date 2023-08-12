@@ -2,41 +2,24 @@ import Navbar from './../component/Navbar';
 import Footer from './../component/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import Elephant from '/images/image-3.webp';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import './../assets/css/detailprofile.css';
-import { URL } from './../config/URL';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteRecipeAction, getAllRecipeAction } from '../../redux/actions/RecipeAction';
 
-export default function DetailRecipe() {
+export default function DetailProfile() {
     const navigate = useNavigate();
-    const [recipeData, setRecipeData] = useState([]);
-
-    function getRecipeData() {
-        axios.get(`${URL}/recipe/main`)
-            .then(res => setRecipeData(res.data.data))
-            .catch(err => console.error(err.message));
-    }
-
-    function deleteMenu(id) {
-        axios.delete(`${URL}/recipe/${id}`, {headers: {
-            Authorization: `Bearer ${token}`
-        }})
-        .then(() => {
-            navigate('/account');
-        })
-        .catch(err => {
-            console.error(err.message)
-        })
-    }
+    const dispatch = useDispatch();
+    const {recipes} = useSelector(state => state);
+    const {data} = recipes;
 
     useEffect(() => {
-        getRecipeData();
-    })
+        dispatch(getAllRecipeAction());
+    }, [])
 
     return (
         <>
-            <Navbar firstlink='Home' firstlinkto='/' secondlink='Search menu' secondlinkto='/recipe' thirdlink='Profile' thirdlinkto='#' props='account' />
-
+            <Navbar/>
             <section className="navbar second-nav">
             <div className="container-fluid">
                 <div className="vr bg-warning" style={{padding: '2px'}}></div>
@@ -66,8 +49,8 @@ export default function DetailRecipe() {
             <hr style={{width: '142vh', marginLeft: '35vh', height: '3vh', backgroundColor: '#EFC81A'}}/>
             
             <main id="recipe-content">
-                {recipeData.map((item, index) => {
-                    return(
+                {data?.map((item, index) => {
+                    return (
                         <div key={index} className='mt-5'>
                             <section className="d-flex single-popular-recipe justify-content-start container">
                                 <a className="col-md-8 mt-5" href="#">
@@ -82,7 +65,7 @@ export default function DetailRecipe() {
                                 <p className="reaction-row bg-warning">10 likes - 12 comments - 3 bookmarks</p>
                                 <mark className="account">
                                     <Link className="btn btn-primary ms-1" to={`/edit-recipe/${item.id}`}>Edit Menu</Link>
-                                    <a className="btn btn-danger ms-5" onClick={() => deleteMenu(item.id)} role="button">Delete Menu</a>
+                                    <a className="btn btn-danger ms-5" onClick={() => dispatch(deleteRecipeAction(item.id, navigate))} role="button">Delete Menu</a>
                                 </mark>
                             </section>
                         </div>
@@ -91,7 +74,7 @@ export default function DetailRecipe() {
                 }
             </main>
 
-            <section className="pagination">
+            <section className="pagination mt-5">
                 <a className="btn btn-warning button-previous" style={{color: 'white', fontSize: '12px'}} href="#" role="link">Prev</a>
                 Show 6-10 From 20
             </section>

@@ -1,14 +1,33 @@
 import { Link, useNavigate } from "react-router-dom";
-import PropTypes from 'prop-types';
 import Elephant from '/images/image-3.webp';
 import './../assets/css/styles.css';
 
-export default function Navbar({firstlink, firstlinkto, secondlink, secondlinkto, thirdlink, thirdlinkto}) {
+export default function Navbar() {
     const navigate = useNavigate();
+    let firstlink, firstlinkto, secondlink, secondlinkto, thirdlink, thirdlinkto;
     function userLogout() {
         localStorage.clear();
         navigate('/');
     }
+
+    if (!localStorage.getItem('token')) {
+        firstlink = 'Register';
+        firstlinkto = '/auth/register';
+        secondlink = 'Login';
+        secondlinkto = '/auth/login';
+        thirdlink = 'Recipe';
+        thirdlinkto = '/recipe';
+    }
+
+    if (localStorage.getItem('token')) {
+        firstlink = 'Recipe';
+        firstlinkto = '/recipe';
+        secondlink = 'Add Recipe';
+        secondlinkto = '/add-recipe';
+        thirdlink = 'Profile';
+        thirdlinkto = '/account'
+    }
+
 
     if (localStorage.getItem("token")) {
         return (
@@ -69,14 +88,4 @@ export default function Navbar({firstlink, firstlinkto, secondlink, secondlinkto
             </nav>
         )
     }
-}
-
-Navbar.propTypes = {
-    firstlink: PropTypes.string.isRequired,
-    firstlinkto: PropTypes.string.isRequired,
-    secondlink: PropTypes.string.isRequired,
-    secondlinkto: PropTypes.string.isRequired,
-    thirdlink: PropTypes.string.isRequired,
-    thirdlinkto: PropTypes.string.isRequired,
-    props: PropTypes.string.isRequired
 }

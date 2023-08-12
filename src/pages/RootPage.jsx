@@ -45,7 +45,7 @@ export default class RootPage extends React.Component {
     render() {
         return (
             <>
-                <Navbar firstlink='Register' firstlinkto='/auth/register' secondlink='Login' secondlinkto='/auth/login' thirdlink='Profile' thirdlinkto='/account' />
+                <Navbar />
     
                 <div className="m-lg-5 p-lg-5 m-sm-5 p-sm-5 second-navigation">
                     <h1 className="mt-lg-5 mt-sm-5">

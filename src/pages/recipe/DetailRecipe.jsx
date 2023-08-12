@@ -3,23 +3,19 @@ import Footer from './../component/Footer';
 import { Link, useParams } from 'react-router-dom';
 import Elephant from '/images/image-3.webp';
 import './../assets/css/detailmenu.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { URL } from './../config/URL';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {getRecipeAction} from './../../redux/actions/RecipeAction.js';
 
 export default function DetailRecipe() {
     const {id} = useParams();
-    const [recipeData, setRecipeData] = useState([]);
-    
+    const dispatch = useDispatch();
+    const {recipe} = useSelector(state => state);
+    const {data} = recipe;
+     
     useEffect(() => {
-        axios.get(`${URL}/recipe/${id}/detail`,{headers :{
-            Authorization : `Bearer ${token}`
-        }})
-        .then(res => setRecipeData(res.data.data))
-        .catch(err => {
-            console.error(err.message)
-        })
-    })
+        dispatch(getRecipeAction(id))
+    }, [])
 
     return (
         <>
@@ -47,17 +43,18 @@ export default function DetailRecipe() {
             </section>
 
             <section className="container">
-                <h1 className="text-center">{recipeData.title}</h1>
+                <h1 className="text-center">{data.title}</h1>
                 <Link to="#" className="image-detail-link">
-                    <img src={recipeData.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={recipeData.title}/>
+                    <img src={data.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={data.title}/>
                 </Link>
-                <p className="ingredient me-5">
-                {recipeData.ingredients}
+                <p className="ingredient me-5 fs-4">
+                ingredient: <br/>
+                {data.ingredients}
                 </p>
-                <blockquote className="text-center">{recipeData.category}</blockquote>
+                <blockquote className="fs-4 ms-5">{data.category}</blockquote>
             </section>
         
-            <section className="reaction">
+            <section className="reaction me-5">
                 <button className="btn bookmarkBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-bookmark" viewBox="0 0 16 16">
                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>

@@ -2,12 +2,14 @@ import Navbar from './../component/Navbar';
 import Footer from './../component/Footer';
 import './../assets/css/addmenu.css'
 import { useState } from 'react';
-import axios from 'axios';
 import { URL } from './../config/URL';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { postRecipeAction } from '../../redux/actions/RecipeAction.js';
 
 export default function AddRecipe() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [image_path, setImage] = useState(null);
     const [recipe, setRecipe] = useState({
         title: '',
@@ -18,23 +20,14 @@ export default function AddRecipe() {
 
     const postRecipe = e => {
         e.preventDefault();
-        let bodyForm = new FormData();
+        let bodyRecipe = new FormData();
 
-        bodyForm.append("title", recipe.title);
-        bodyForm.append("ingredients", recipe.ingredients);
-        bodyForm.append("image_path", image_path);
-        bodyForm.append("category", recipe.category);
+        bodyRecipe.append("title", recipe.title);
+        bodyRecipe.append("ingredients", recipe.ingredients);
+        bodyRecipe.append("image_path", image_path);
+        bodyRecipe.append("category", recipe.category);
 
-        axios.post(`${URL}/recipe`, bodyForm, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "multipart/form-data"
-            }
-        }).then(() => {
-            navigate('/recipe')
-        }).catch(e => {
-            console.error(e.message);
-        })
+        dispatch(postRecipeAction(bodyRecipe, navigate));
     }
 
     const onRecipe = e => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './../assets/css/register.css';
 import { useNavigate } from 'react-router';
-import { registerAction } from '../../redux/actions/AuthAction';
+import { registerAction } from '../../redux/actions/AuthAction.js';
 import { useDispatch } from 'react-redux';
 
 export default function RegisterPage() {
@@ -63,7 +63,7 @@ export default function RegisterPage() {
                     </label>
                     <br/>
                 
-                    <button type="submit" id="registerDialog">Register Account</button>
+                    <button type="submit">Register Account</button>
                 </form>
             </section>
             <p className="question-text">Already have account? <a className="link" href="login.html">Log in Here</a></p>

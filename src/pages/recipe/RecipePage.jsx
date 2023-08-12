@@ -1,45 +1,30 @@
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import React from 'react';
+import { useEffect, useState } from 'react';
 import './../assets/css/menurecipe.css';
 import Navbar from './../component/Navbar';
 import Footer from './../component/Footer';
-import {URL} from './../config/URL';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllRecipeAction, searchRecipeAction } from '../../redux/actions/RecipeAction.js';
 
-export default class RecipePage extends React.Component {
-    state = {
-        recipeData: [],
-        query: []
-    }
+export default function RecipePage() {
+    const dispatch = useDispatch();
+    const {recipes} = useSelector(state => state);
+    const {data} = recipes;
+    const [search, setSearch] = useState([]);
 
-    pagination = {
-        page: '' | 1,
-        limit: 10
-    }
+    useEffect(() => {
+        dispatch(getAllRecipeAction());
+    }, [])
 
-    getAllRecipe = () => {
-        axios.get(`${URL}/recipe/main?page=${this.pagination.page}&limit=${this.pagination.limit}`)
-            .then(res => this.setState({recipeData: res.data.data}))
-            .catch(err => console.error(err.message));
-    }
+    useEffect(() => {
+        search.length >= 3 && dispatch(searchRecipeAction(search))
+        search == " " && dispatch(getAllRecipeAction())
+    }, [search])
 
-    searchRecipe(value) {
-        axios.get(`${URL}/recipe?search=${value}`)
-            .then(res => {
-                this.setState({recipeData: res.data.data})
-            })
-            .catch(err => console.error(err.message));
-    }
-
-    componentDidMount() {
-        this.getAllRecipe();
-    }
-
-    render() {
-        return (
+    return (
         <>
             <Navbar firstlink="Home" firstlinkto="/" secondlink="Add Recipe" secondlinkto="/add-recipe" thirdlink="Profile" thirdlinkto="/account" props="account" />
-    
+
             <header className="title-top container">
                 <h1 className="">Discover Recipe</h1>
                 <h1>& Delicious Food</h1>
@@ -47,10 +32,10 @@ export default class RecipePage extends React.Component {
             <div className="m-lg-5 p-lg-5 m-sm-5 p-sm-5 second-navigation">
                 <div className="input-group mb-3 w-50 mb-sm-3 mb-md-3 mb-lg-3">
                     <i className="bi bi-search input-group-text"></i>
-                    <input  onChange={e => this.searchRecipe(e.target.value)} type="search" className="form-control" placeholder="Search Delicious Food" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <input value={search} onChange={e => setSearch(e.target.value)} type="text" className="form-control" placeholder="Search Delicious Food" aria-label="Username" aria-describedby="basic-addon1"/>
                 </div>
             </div>
-    
+
             <section className="container category gap-2">
                 <a role="link" className="btn btn-warning" href="">New</a>
                 <a role="link" className="btn btn-warning ms-2" href="">Popular</a>
@@ -59,7 +44,7 @@ export default class RecipePage extends React.Component {
             </section>
             
             {
-                this.state.recipeData.filter(recipe => recipe.title.includes(this.state.query)).map((item, index) => {
+                data?.map((item, index) => {
                 return (
                     <div key={index}>
                         <section className="d-flex single-popular-recipe justify-content-start container">
@@ -89,6 +74,5 @@ export default class RecipePage extends React.Component {
 
             <Footer/>
         </>
-        )
-    }
+    )
 }

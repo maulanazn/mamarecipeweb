@@ -1,5 +1,5 @@
 import axios from "axios";
-import {URL} from '../../pages/config/URL';
+import {URL} from '../../pages/config/URL.js';
 
 export const loginAction = (data, navigate) =>
     async (dispatch) => {
