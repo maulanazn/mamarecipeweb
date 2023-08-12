@@ -32,7 +32,7 @@ export default function RecipePage() {
             <div className="m-lg-5 p-lg-5 m-sm-5 p-sm-5 second-navigation">
                 <div className="input-group mb-3 w-50 mb-sm-3 mb-md-3 mb-lg-3">
                     <i className="bi bi-search input-group-text"></i>
-                    <input value={search} onChange={e => setSearch(e.target.value)} type="text" className="form-control" placeholder="Search Delicious Food" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <input value={search} onChange={e => setSearch(e.target.value)} name="search" type="text" className="form-control" placeholder="Search Delicious Food" aria-label="Username" aria-describedby="basic-addon1"/>
                 </div>
             </div>
 
