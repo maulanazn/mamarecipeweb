@@ -58,7 +58,7 @@ export default function EditRecipe() {
 
     return (
         <>
-            <Navbar firstlink="Home" firstlinkto="/" secondlink="Profile" secondlinkto="/account" thirdlink="Recipe" thirdlinkto="/recipe" props="account" />
+            <Navbar/>
 
             <form onSubmit={putRecipeData} className="container">
                 <div className="photo-file" style={{

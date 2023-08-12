@@ -2,11 +2,11 @@ import axios from "axios";
 import {URL} from './../../pages/config/URL.js';
 import headers from './../../pages/config/Header.js';
 
-export const getAllRecipeAction = () => 
+export const getAllRecipeAction = (page = 1, limit = 10) => 
     async (dispatch) => {
         try {
             dispatch({type: 'GET_RECIPES_PENDING'})
-            const result = await axios.get(`${URL}/recipe/lists`)
+            const result = await axios.get(`${URL}/recipe/main?page=${page}&limit=${limit}`)
             dispatch({payload: result.data.data, type: 'GET_RECIPES_SUCCESS'})
         } catch (error) {
             dispatch({payload: error.response.data.message, type: 'GET_RECIPES_FAILED'})
@@ -70,7 +70,7 @@ export const deleteRecipeAction = (id, navigate) =>
         try {
             dispatch({type: 'DELETE_RECIPE_PENDING'})
             const result = await axios.delete(`${URL}/recipe/${id}`, {headers})
-            navigate('/account')
+            navigate('/recipe')
             dispatch({payload: result.data.data, type: 'DELETE_RECIPE_SUCCESS'})
         } catch (error) {
             dispatch({payload: error.response.data.message, type: 'DELETE_RECIPE_FAILED'})

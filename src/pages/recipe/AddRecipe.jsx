@@ -41,7 +41,7 @@ export default function AddRecipe() {
 
     return (
         <>
-            <Navbar firstlink="Home" firstlinkto="/" secondlink="Search menu" secondlinkto="/recipe" thirdlink="Profile" thirdlinkto="/account" props='account' />
+            <Navbar/>
 
             <form onSubmit={postRecipe}>
                 <div className="photo-file" style={{

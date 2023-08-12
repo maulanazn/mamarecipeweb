@@ -19,7 +19,7 @@ export default function DetailRecipe() {
 
     return (
         <>
-            <Navbar firstlink='Home' firstlinkto='/' secondlink='Search menu' secondlinkto='/recipe' thirdlink='Profile' thirdlinkto='/account' props='account' />
+            <Navbar/>
 
             <section className="navbar second-nav">
             <div className="container-fluid">
