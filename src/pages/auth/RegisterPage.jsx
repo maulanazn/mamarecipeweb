@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import './../../assets/css/register.css';
+import './../assets/css/register.css';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
-import { URL } from '../../config/URL';
+import { registerAction } from '../../redux/actions/AuthAction';
+import { useDispatch } from 'react-redux';
 
 export default function RegisterPage() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [userData, setUserData] = useState({
         name: '',
         email: '',
@@ -14,21 +15,7 @@ export default function RegisterPage() {
 
     const registerUser = (e) => {
         e.preventDefault();
-
-        let bodyForm = new FormData();
-        bodyForm.append('name', userData.name);
-        bodyForm.append('email', userData.email);
-        bodyForm.append('password', userData.password);
-
-        axios.post(`${URL}/register`, bodyForm, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        }).then(() => {
-            navigate('/auth/login')
-        }).catch(err => {
-            console.error(err.message);
-        })
+        dispatch(registerAction(userData, navigate))
     }
     
     const onUserChange = (e) => {

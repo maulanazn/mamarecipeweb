@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import './../../assets/css/menurecipe.css';
-import Navbar from '../../component/Navbar';
-import Footer from '../../component/Footer';
-import {URL} from './../../config/URL';
+import './../assets/css/menurecipe.css';
+import Navbar from './../component/Navbar';
+import Footer from './../component/Footer';
+import {URL} from './../config/URL';
 
 export default class RecipePage extends React.Component {
     state = {

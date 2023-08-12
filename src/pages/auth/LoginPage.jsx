@@ -1,40 +1,26 @@
 import { useState } from 'react';
-import './../../assets/css/login.css';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
-import {URL} from './../../config/URL';
+import './../assets/css/login.css';
+import { useDispatch, useSelector } from 'react-redux';
+import {loginAction} from './../../redux/actions/AuthAction.jsx';
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const [login, handleLogin] = useState({
+    const dispatch = useDispatch();
+    const {errorMessage} = useSelector(state => state.login);
+    const [dataLogin, handleDataLogin] = useState({
         email: '',
         password: ''
     });
 
     const loginUser = (e) => {
         e.preventDefault();
-
-        let bodyLogin = new FormData();
-        bodyLogin.append('email', login.email);
-        bodyLogin.append('password', login.password);
-
-        axios.post(`${URL}/login`, bodyLogin, {headers: {
-            "Content-Type": "application/json"
-        }
-            }).then(res => {
-                localStorage.setItem("token", res.data.accesstoken);
-                localStorage.setItem("name", res.data.data.name);
-                localStorage.setItem("photo", res.data.data.photo);
-                localStorage.setItem("email", res.data.data.email);
-
-                navigate('/')
-            })
-            .catch(err => console.error(err.message));
+        dispatch(loginAction(dataLogin, navigate));
     }
 
     const onLogin = (e) => {
-        handleLogin({
-            ...login,
+        handleDataLogin({
+            ...dataLogin,
             [e.target.name]:e.target.value
         })
     }
@@ -47,20 +33,22 @@ export default function LoginPage() {
                 <p id="info">Log in into your existing account</p>
             </header>
 
+            {errorMessage && <h1>Ada yang salah</h1>}
+
             <section className="form">
                 <form onSubmit={loginUser}>
                     <label className="label-email" htmlFor="email">
                         Email
                     </label>
                     <br/>
-                    <input value={login.email} onChange={onLogin} type="email" name="email" id="email" placeholder="Enter email address"  required/>
+                    <input value={dataLogin.email} onChange={onLogin} type="email" name="email" id="email" placeholder="Enter email address"  required/>
                     <br/>
                 
                     <label className="label-password" htmlFor="password">
                         Password
                     </label>
                     <br/>
-                    <input value={login.password} onChange={onLogin} type="text" name="password" id="password" placeholder="Password" required/>
+                    <input value={dataLogin.password} onChange={onLogin} type="password" name="password" id="password" placeholder="Password" required/>
                     <br/>
                 
                     <label className="check-box">

@@ -1,9 +1,9 @@
-import Navbar from '../../component/Navbar';
-import Footer from '../../component/Footer';
-import './../../assets/css/addmenu.css'
+import Navbar from './../component/Navbar';
+import Footer from './../component/Footer';
+import './../assets/css/addmenu.css'
 import { useState } from 'react';
 import axios from 'axios';
-import { URL } from '../../config/URL';
+import { URL } from './../config/URL';
 import { useNavigate } from 'react-router';
 
 export default function AddRecipe() {

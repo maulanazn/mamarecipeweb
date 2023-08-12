@@ -1,5 +1,5 @@
-import Navbar from '../component/Navbar';
-import Footer from '../component/Footer';
+import Navbar from './component/Navbar';
+import Footer from './component/Footer';
 import EggSandwich from '/images/image-13.webp';
 import EggFriedRice from '/images/image-4.webp';
 import AromaticRice from '/images/image-5.webp';
@@ -9,10 +9,10 @@ import BananaSmoothie from '/images/image-9.webp';
 import LavaCoffeCake from '/images/image-10.webp';
 import SalmonSugar from '/images/image-11.webp';
 import IndianaSalad from '/images/image-12.webp';
-import './../assets/css/styles.css';
+import './assets/css/styles.css';
 import axios from 'axios';
 import React from 'react';
-import { URL } from './../config/URL';
+import { URL } from './config/URL';
 
 export default class RootPage extends React.Component {
     constructor() {

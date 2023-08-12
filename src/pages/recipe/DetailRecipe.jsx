@@ -1,11 +1,11 @@
-import Navbar from './../../component/Navbar';
-import Footer from './../../component/Footer';
+import Navbar from './../component/Navbar';
+import Footer from './../component/Footer';
 import { Link, useParams } from 'react-router-dom';
 import Elephant from '/images/image-3.webp';
-import './../../assets/css/detailmenu.css';
+import './../assets/css/detailmenu.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { URL } from '../../config/URL';
+import { URL } from './../config/URL';
 
 export default function DetailRecipe() {
     const {id} = useParams();

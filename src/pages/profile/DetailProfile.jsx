@@ -1,11 +1,11 @@
-import Navbar from './../../component/Navbar';
-import Footer from './../../component/Footer';
+import Navbar from './../component/Navbar';
+import Footer from './../component/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import Elephant from '/images/image-3.webp';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './../../assets/css/detailprofile.css';
-import { URL } from '../../config/URL';
+import './../assets/css/detailprofile.css';
+import { URL } from './../config/URL';
 
 export default function DetailRecipe() {
     const navigate = useNavigate();

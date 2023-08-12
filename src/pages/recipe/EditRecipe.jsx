@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from 'react-router';
-import Navbar from './../../component/Navbar'
-import Footer from './../../component/Footer'
-import './../../assets/css/editmenu.css'
+import Navbar from './../component/Navbar'
+import Footer from './../component/Footer'
+import './../assets/css/editmenu.css'
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { URL } from '../../config/URL';
+import { URL } from './../config/URL';
 
 export default function EditRecipe() {
     const {id} = useParams();
