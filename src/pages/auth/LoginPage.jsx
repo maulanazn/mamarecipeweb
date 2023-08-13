@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import './../assets/css/login.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {loginAction} from './../../redux/actions/AuthAction.js';
+import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
     const navigate = useNavigate();
@@ -60,7 +61,7 @@ export default function LoginPage() {
                     <button type="submit">Login</button>
                 </form>
             </section>
-            <p className="question-text">Dont have an account? <a className="link" href="register.html">Sign up</a></p>
+            <p className="question-text">Dont have an account? <Link className="link" to={'/auth/register'}>Sign up</Link></p>
         </>
     )
 }

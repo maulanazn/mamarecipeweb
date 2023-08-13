@@ -1,45 +1,10 @@
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './../assets/css/menurecipe.css';
 import Navbar from './../component/Navbar';
 import Footer from './../component/Footer';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllRecipeAction, searchRecipeAction, sortingRecipeAction } from '../../redux/actions/RecipeAction.js';
-
-function MappedRecipeData({data}) {
-    return (
-        <>
-        {
-            data?.map((item, index) => {
-            return (
-                <div key={index}>
-                    <section className="d-flex single-popular-recipe justify-content-start container">
-                        <Link to={`/recipe/${item.id}`} className="col-md-8 mt-5">
-                            <img src={item.image_path} className="img-fluid img-thumbnail rounded float-start" loading="eager" decoding="async" width="500" height="350" alt={item.title}/>
-                        </Link>
-                    </section>
-                    <section className="d-flex ingredient-popular-recipe justify-content-end flex-column offset-md-8">
-                        <h3>{item.title}</h3>
-                        <p className="ingredient text-break">
-                            {item.ingredients}
-                        </p>
-                        <p className="reaction-row bg-warning">10 likes - 12 comments - 3 bookmarks</p>
-                        <mark className="account">
-                            <img className="rounded-circle" src={item.image_path} loading="eager" decoding="async" width="30" height="30" alt={item.user_name}/>
-                            {item.user_name}
-                        </mark>
-                    </section>
-                </div>
-            )})
-        }
-        </>
-    )
-}
-
-MappedRecipeData.propTypes = {
-    data: PropTypes.any.isRequired
-}
+import { categorizedRecipeAction, getAllRecipeAction, searchRecipeAction, sortingRecipeAction } from '../../redux/actions/RecipeAction.js';
+import MappedRecipeData from '../component/AllRecipeComp';
 
 export default function RecipePage() {
     const dispatch = useDispatch();
@@ -50,10 +15,15 @@ export default function RecipePage() {
     const [search, setSearch] = useState([]);
     const [sortBy, setSortBy] = useState([]);
     const [sort, setSort] = useState([]);
+    const [category, setCategory] = useState([]);
 
     useEffect(() => {
         dispatch(sortingRecipeAction(sortBy, sort))
     }, [sortBy, sort])
+
+    useEffect(() => {
+        dispatch(categorizedRecipeAction(category))
+    }, [category])
 
     useEffect(() => {
         dispatch(getAllRecipeAction(currentPage));
@@ -62,11 +32,11 @@ export default function RecipePage() {
     useEffect(() => {   
         search.length >= 3 && dispatch(searchRecipeAction(search))
         search == '' && dispatch(getAllRecipeAction())
-    }, [search])    
+    }, [search])
 
     return (
         <>
-            <Navbar firstlink="Home" firstlinkto="/" secondlink="Add Recipe" secondlinkto="/add-recipe" thirdlink="Profile" thirdlinkto="/account" props="account" />
+            <Navbar />
 
             <header className="title-top container">
                 <h1 className="">Discover Recipe</h1>
@@ -85,7 +55,6 @@ export default function RecipePage() {
                         <option onClick={e => setSortBy(e.target.value)} value="user_name">User</option>
                         <option onClick={e => setSortBy(e.target.value)} value="created_at">Created At</option>
                     </select>
-
                     <select className="form-select" aria-label="Default select example" style={{width: '30vh'}}>
                         <option selected onClick={e => setSort(e.target.value)} value="">Sort</option>
                         <option onClick={e => setSort(e.target.value)} value="asc">A-Z</option>
@@ -97,9 +66,10 @@ export default function RecipePage() {
             </div>
 
             <section className="container category gap-2">
-                <a role="button" className="btn btn-warning" href="">Main course</a>
-                <a role="button" className="btn btn-warning ms-2" href="">Appetizer</a>
-                <a role="button" className="btn btn-success ms-2" href="">Dessert</a>
+                <button onClick={() => dispatch(getAllRecipeAction())} value="" style={{width: '20vh'}} className="btn btn-warning">All</button>
+                <button onClick={e => setCategory(e.target.value)} value="Main course" style={{width: '20vh'}} className="btn btn-warning ms-2">Main Course</button>
+                <button onClick={e => setCategory(e.target.value)} value="Appetizer" style={{width: '20vh'}} className="btn btn-warning ms-2">Appetizer</button>
+                <button onClick={e => setCategory(e.target.value)} value="Dessert" style={{width: '20vh'}} className="btn btn-success ms-2">Dessert</button>
             </section>
             
             <MappedRecipeData data={data}/>

@@ -179,12 +179,6 @@
         margin-left: -0.2vh;
     }
 
-    .category {
-        margin-top: 7vh;
-        margin-bottom: 25vh;
-        margin-left: 15vh;
-    }
-
     .search-bar, input[name="menu"] {
         padding-right: auto;
     }
