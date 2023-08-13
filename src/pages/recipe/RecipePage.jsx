@@ -22,12 +22,12 @@ export default function RecipePage() {
     }, [sortBy, sort])
 
     useEffect(() => {
-        dispatch(categorizedRecipeAction(category))
-    }, [category])
-
-    useEffect(() => {
         dispatch(getAllRecipeAction(currentPage));
     }, [currentPage])
+
+    useEffect(() => {
+        dispatch(categorizedRecipeAction(category))
+    }, [category])
 
     useEffect(() => {   
         search.length >= 3 && dispatch(searchRecipeAction(search))

@@ -1,27 +1,26 @@
 import Navbar from './../component/Navbar';
 import Footer from './../component/Footer';
 import { Link, useNavigate } from 'react-router-dom';
-import Elephant from '/images/image-3.webp';
 import { useEffect, useState } from 'react';
-import './../assets/css/detailprofile.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteRecipeAction, getAllRecipeAction } from '../../redux/actions/RecipeAction';
+import { deleteRecipeAction, getUserRecipeAction } from '../../redux/actions/RecipeAction.js';
+import './../assets/css/detailprofile.css';
 
 export default function DetailProfile() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const page = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
-    const {recipes} = useSelector(state => state);
-    const {data} = recipes;
-
-    useEffect(() => {
-        dispatch(getAllRecipeAction(currentPage));
-    }, [currentPage])
-
+    const {user_recipe} = useSelector(state => state);
+    const {data} = user_recipe;
+    
     function deleteRecipe(id) {
         dispatch(deleteRecipeAction(id, navigate))
     }
+
+    useEffect(() => {
+        dispatch(getUserRecipeAction(localStorage.getItem('name'), currentPage))
+    }, [currentPage, localStorage.getItem('name')])
 
     return (
         <>
@@ -31,11 +30,11 @@ export default function DetailProfile() {
                 <div className="vr bg-warning" style={{padding: '2px'}}></div>
                 <mark className="bg-transparent profile-wrapper">
                     <Link to='#'>
-                        <img width="50" height="50" loading="eager" decoding="async" id="photo-profile" src={Elephant} alt="Elephant profile"/>
+                        <img width="50" height="50" loading="eager" decoding="async" id="photo-profile" src={localStorage.getItem("photo") ?? ''} alt={localStorage.getItem("name")}/>
                     </Link>
                 </mark>
                 <mark className="col bg-transparent profile-details">
-                    <p className="col">Mr. Elephant</p>
+                    <p className="col">{localStorage.getItem("name")}</p>
                     <p className="fw-bold">10 recipes</p>
                 </mark>
                 <form className="d-flex" role="search">

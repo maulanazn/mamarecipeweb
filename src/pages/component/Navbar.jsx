@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import Elephant from '/images/image-3.webp';
 import './../assets/css/styles.css';
 
 export default function Navbar() {
     const navigate = useNavigate();
+    const defaultPhoto = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/54fd7df2-8543-4f26-8482-d307d4fa144c/d2r2hul-2bceca79-e8db-4dd9-8835-af7a58cb4eec.jpg/v1/fill/w_1024,h_680,q_75,strp/facebook_default_picture_by_adnac_d2r2hul-fullview.jpg';
     function userLogout() {
         localStorage.clear();
         navigate('/');
@@ -33,11 +33,11 @@ export default function Navbar() {
                                 <div className="vr bg-warning profile d-flex"></div>
                                 <mark className="col bg-transparent profile-wrapper me-2">
                                     <a href="../profile/detailprofile.html">
-                                        <img loading="eager" width="50" height="50" className="ms-5" decoding="async" id="photo-profile" src={Elephant} alt="Elephant profile"/>
+                                        <img loading="eager" width="50" height="50" className="ms-5" decoding="async" id="photo-profile" src={localStorage.getItem("photo") ? true : defaultPhoto} alt={localStorage.getItem("name")}/>
                                     </a>
                                 </mark>
                                 <mark className="col bg-transparent logout-detail me-5">
-                                    <p className="col">Mr. Elephant</p>
+                                    <p className="col">{localStorage.getItem("name")}</p>
                                     <a className="fw-bold" role="button" id="logout-btn" onClick={userLogout}>Logout</a>
                                 </mark>
                             </>

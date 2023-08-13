@@ -10,8 +10,7 @@ import {getRecipeAction} from './../../redux/actions/RecipeAction.js';
 export default function DetailRecipe() {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const {recipe} = useSelector(state => state);
-    const {data} = recipe;
+    const recipe = useSelector(state => state.recipe);
      
     useEffect(() => {
         dispatch(getRecipeAction(id))
@@ -43,15 +42,15 @@ export default function DetailRecipe() {
             </section>
 
             <section className="container">
-                <h1 className="text-center">{data.title}</h1>
+                <h1 className="text-center">{recipe.title}</h1>
                 <Link to="#" className="image-detail-link">
-                    <img src={data.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={data.title}/>
+                    <img src={recipe.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={recipe.title}/>
                 </Link>
                 <p className="ingredient me-5 fs-4">
                 ingredient: <br/>
-                {data.ingredients}
+                {recipe.ingredients}
                 </p>
-                <blockquote className="fs-4 ms-5">{data.category}</blockquote>
+                <blockquote className="fs-4 ms-5">{recipe.category}</blockquote>
             </section>
         
             <section className="reaction me-5">

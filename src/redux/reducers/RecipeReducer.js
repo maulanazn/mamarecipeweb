@@ -27,6 +27,33 @@ export const getAllRecipeReducer = (state = initialState, action) => {
     return state;
 }
 
+export const getUserRecipeReducer = (state = initialState, action) => {
+    if (action.type === 'USER_RECIPES_PENDING') {
+        return {
+            ...state,
+            isLoading: true
+        }
+    }
+
+    if (action.type === 'USER_RECIPES_SUCCESS') {
+        return {
+            ...state,
+            data: action.payload,
+            errorMessage: ''
+        }
+    }
+
+    if (action.type === 'USER_RECIPES_FAILED') {
+        return {
+            ...state,
+            data: null,
+            errorMessage: action.payload
+        }
+    }
+
+    return state;
+}
+
 export const getRecipeReducer = (state = initialState, action) => {
     if (action.type === 'GET_RECIPE_PENDING') {
         return {

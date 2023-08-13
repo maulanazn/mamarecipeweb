@@ -8,6 +8,9 @@ export const loginAction = (data, navigate) =>
             const result = await axios.post(`${URL}/login`,data)
 
             localStorage.setItem("token", result.data.accesstoken)
+            localStorage.setItem("name", result.data.data.name)
+            localStorage.setItem("email", result.data.data.email)
+            localStorage.setItem("photo", result.data.data.photo)
 
             dispatch({payload: result.data.data, type: 'LOGIN_SUCCESS'})
             navigate('/')
