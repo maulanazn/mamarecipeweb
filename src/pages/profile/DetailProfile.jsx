@@ -2,7 +2,7 @@ import Navbar from './../component/Navbar';
 import Footer from './../component/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import Elephant from '/images/image-3.webp';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './../assets/css/detailprofile.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteRecipeAction, getAllRecipeAction } from '../../redux/actions/RecipeAction';
@@ -10,12 +10,18 @@ import { deleteRecipeAction, getAllRecipeAction } from '../../redux/actions/Reci
 export default function DetailProfile() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const page = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const {recipes} = useSelector(state => state);
     const {data} = recipes;
 
     useEffect(() => {
-        dispatch(getAllRecipeAction());
-    }, [])
+        dispatch(getAllRecipeAction(currentPage));
+    }, [currentPage])
+
+    function deleteRecipe(id) {
+        dispatch(deleteRecipeAction(id, navigate))
+    }
 
     return (
         <>
@@ -65,7 +71,7 @@ export default function DetailProfile() {
                                 <p className="reaction-row bg-warning">10 likes - 12 comments - 3 bookmarks</p>
                                 <mark className="account">
                                     <Link className="btn btn-primary ms-1" to={`/edit-recipe/${item.id}`}>Edit Menu</Link>
-                                    <a className="btn btn-danger ms-5" onClick={() => dispatch(deleteRecipeAction(item.id, navigate))} role="button">Delete Menu</a>
+                                    <a className="btn btn-danger ms-5" onClick={() => deleteRecipe(item.id)} role="button">Delete Menu</a>
                                 </mark>
                             </section>
                         </div>
@@ -74,9 +80,19 @@ export default function DetailProfile() {
                 }
             </main>
 
-            <section className="pagination mt-5">
-                <a className="btn btn-warning button-previous" style={{color: 'white', fontSize: '12px'}} href="#" role="link">Prev</a>
-                Show 6-10 From 20
+            <section className="pagination mt-5 ms-5">
+                <button
+                    className="btn btn-sm btn-warning button-previous"
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    hidden={currentPage <= 1}>
+                    Prev
+                </button>
+                <button
+                    className="btn btn-sm btn-warning button-next"
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    hidden={currentPage >= page?.totalPage}>
+                    Next
+                </button>
             </section>
 
             <Footer/>

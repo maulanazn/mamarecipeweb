@@ -54,33 +54,6 @@ export const getRecipeReducer = (state = initialState, action) => {
     return state;
 }
 
-export const searchRecipeReducer = (state = initialState, action) => {
-    if (action.type === 'SEARCH_RECIPE_PENDING') {
-        return {
-            ...state,
-            isLoading: true
-        }
-    }
-
-    if (action.type === 'SEARCH_RECIPE_SUCCESS') {
-        return {
-            ...state,
-            data: action.payload,
-            errorMessage: ''
-        }
-    }
-
-    if (action.type === 'SEARCH_RECIPE_FAILED') {
-        return {
-            ...state,
-            data: null,
-            errorMessage: action.payload
-        }
-    }
-
-    return state;
-}
-
 export const postRecipeReducer = (state = initialState, action) => {
     if (action.type === 'POST_RECIPE_PENDING') {
         return {

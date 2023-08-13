@@ -9,16 +9,18 @@ import { getAllRecipeAction, searchRecipeAction } from '../../redux/actions/Reci
 export default function RecipePage() {
     const dispatch = useDispatch();
     const {recipes} = useSelector(state => state);
+    const page = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const {data} = recipes;
     const [search, setSearch] = useState([]);
 
     useEffect(() => {
-        dispatch(getAllRecipeAction());
-    }, [])
+        dispatch(getAllRecipeAction(currentPage));
+    }, [currentPage])
 
     useEffect(() => {
         search.length >= 3 && dispatch(searchRecipeAction(search))
-        search == " " && dispatch(getAllRecipeAction())
+        search == '' && dispatch(getAllRecipeAction())
     }, [search])
 
     return (
@@ -67,9 +69,19 @@ export default function RecipePage() {
                 )})
             }
 
-            <section className="pagination">
-                Show 1-5 From 20
-                <a className="btn btn-warning button-next" style={{color: 'white', fontSize: '12px'}} role="button">Next</a>
+            <section className="pagination mt-5 ms-5">
+                <button
+                    className="btn btn-sm btn-warning button-previous"
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    hidden={currentPage <= 1}>
+                    Prev
+                </button>
+                <button
+                    className="btn btn-sm btn-warning button-next"
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    hidden={currentPage >= page?.totalPage}>
+                    Next
+                </button>
             </section>
 
             <Footer/>

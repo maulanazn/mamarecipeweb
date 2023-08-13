@@ -2,7 +2,7 @@ import axios from "axios";
 import {URL} from './../../pages/config/URL.js';
 import headers from './../../pages/config/Header.js';
 
-export const getAllRecipeAction = (page = 1, limit = 10) => 
+export const getAllRecipeAction = (page = 1, limit = 5) => 
     async (dispatch) => {
         try {
             dispatch({type: 'GET_RECIPES_PENDING'})
@@ -30,11 +30,11 @@ export const getRecipeAction = (id) =>
 export const searchRecipeAction = (data) => 
     async (dispatch) => {
         try {
-            dispatch({type: 'SEARCH_RECIPE_PENDING'})
+            dispatch({type: 'GET_RECIPES_PENDING'})
             const result = await axios.get(`${URL}/recipe?search=${data}`)
-            dispatch({payload: result.data.data, type: 'SEARCH_RECIPE_SUCCESS'})
+            dispatch({payload: result.data.data, type: 'GET_RECIPES_SUCCESS'})
         } catch (error) {
-            dispatch({payload: error.response.data.message, type: 'SEARCH_RECIPE_FAILED'})
+            dispatch({payload: error.response.data.message, type: 'GET_RECIPES_FAILED'})
             console.error(error.message);
         }
     }
