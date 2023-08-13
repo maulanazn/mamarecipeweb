@@ -39,6 +39,18 @@ export const searchRecipeAction = (data) =>
         }
     }
 
+export const sortingRecipeAction = (sortBy = '', sort = '') => 
+    async (dispatch) => {
+        try {
+            dispatch({type: 'GET_RECIPES_PENDING'})
+            const result = await axios.get(`${URL}/recipe?sortBy=${sortBy}&sort=${sort}`)
+            dispatch({payload: result.data.data, type: 'GET_RECIPES_SUCCESS'})
+        } catch (error) {
+            dispatch({payload: error.response.data.message, type: 'GET_RECIPES_FAILED'})
+            console.error(error.message);
+        }
+    }
+
 export const postRecipeAction = (data, navigate) => 
     async (dispatch) => {
         try {

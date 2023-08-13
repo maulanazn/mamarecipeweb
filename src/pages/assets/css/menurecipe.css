@@ -17,6 +17,10 @@
     .search-bar {
         margin-left: 19vh;
     }
+
+    .sorted-list {
+        margin-right: 10vh;
+    }
     
     .category {
         margin-bottom: 8vh;
@@ -73,6 +77,10 @@
     
     .search-bar {
         margin-left: 19vh;
+    }
+
+    .sorted-list {
+        margin-right: 10vh;
     }
     
     .category {
