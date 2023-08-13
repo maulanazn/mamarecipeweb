@@ -5,6 +5,7 @@ import './../assets/css/editmenu.css'
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {getRecipeAction, updateRecipeAction} from './../../redux/actions/RecipeAction.js';
+import { PacmanLoader } from 'react-spinners';
 
 export default function EditRecipe() {
     const {id} = useParams();
@@ -12,6 +13,7 @@ export default function EditRecipe() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {data} = useSelector(state => state.recipe);
+    const {isLoading} = useSelector(state => state.put_recipe);
     const [image_path, setImage] = useState(null);
     const [recipeData, setRecipeData] = useState({
         title: "",
@@ -59,6 +61,8 @@ export default function EditRecipe() {
     return (
         <>
             <Navbar/>
+
+            {isLoading && <PacmanLoader color="#36d7b7" />}
 
             <form onSubmit={putRecipeData} className="container">
                 <div className="photo-file" style={{

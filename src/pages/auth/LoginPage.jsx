@@ -4,11 +4,12 @@ import './../assets/css/login.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {loginAction} from './../../redux/actions/AuthAction.js';
 import { Link } from 'react-router-dom';
+import { PacmanLoader } from 'react-spinners';
 
 export default function LoginPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {errorMessage} = useSelector(state => state.login);
+    const {errorMessage, isLoading} = useSelector(state => state.login);
     const [dataLogin, handleDataLogin] = useState({
         email: '',
         password: ''
@@ -34,6 +35,7 @@ export default function LoginPage() {
                 <p id="info">Log in into your existing account</p>
             </header>
 
+            {isLoading && <PacmanLoader color="#36d7b7" />}
             {errorMessage && <h1>Ada yang salah</h1>}
 
             <section className="form">

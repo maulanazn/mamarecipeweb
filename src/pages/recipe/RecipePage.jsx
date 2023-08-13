@@ -9,8 +9,8 @@ import MappedRecipeData from '../component/AllRecipeComp';
 export default function RecipePage() {
     const dispatch = useDispatch();
     const {recipes} = useSelector(state => state);
-    const page = useState(1);
     const {data} = recipes;
+    const page = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState([]);
     const [sortBy, setSortBy] = useState([]);

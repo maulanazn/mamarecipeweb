@@ -2,11 +2,14 @@ import { useState } from 'react';
 import './../assets/css/register.css';
 import { useNavigate } from 'react-router';
 import { registerAction } from '../../redux/actions/AuthAction.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { PacmanLoader } from 'react-spinners';
 
 export default function RegisterPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {register} = useSelector(state => state);
+    const {isLoading} = register;
     const [userData, setUserData] = useState({
         name: '',
         email: '',
@@ -32,6 +35,8 @@ export default function RegisterPage() {
                 <p id="title-motto">Lets Get Started!</p>
                 <p id="info">Create new account to access all features</p>
             </header>
+
+            {isLoading && <PacmanLoader color="#36d7b7" />}
 
             <section className="form">
                 <form onSubmit={registerUser}>

@@ -4,12 +4,15 @@ import './../assets/css/addmenu.css'
 import { useState } from 'react';
 import { URL } from './../config/URL';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postRecipeAction } from '../../redux/actions/RecipeAction.js';
+import { PacmanLoader } from 'react-spinners';
 
 export default function AddRecipe() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {post_recipe} = useSelector(state => state);
+    const {isLoading} = post_recipe;
     const [image_path, setImage] = useState(null);
     const [recipe, setRecipe] = useState({
         title: '',
@@ -42,6 +45,8 @@ export default function AddRecipe() {
     return (
         <>
             <Navbar/>
+
+            {isLoading && <PacmanLoader color="#36d7b7" />}
 
             <form onSubmit={postRecipe}>
                 <div className="photo-file" style={{
