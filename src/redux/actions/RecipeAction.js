@@ -18,7 +18,7 @@ export const getUserRecipeAction = (user = '', offset = 1) =>
     async (dispatch) => {
         try {
             dispatch({type: 'USER_RECIPES_PENDING'})
-            const result = await axios.get(`${URL}/recipe/user?user_name=${user}&page=${offset}&limit=5`)
+            const result = await axios.get(`${URL}/recipe/user?user_name=${user}&page=${offset}&limit=5`, {headers})
             dispatch({payload: result.data.data, type: 'USER_RECIPES_SUCCESS'})
         } catch (error) {
             dispatch({payload: error.response.data.message, type: 'USER_RECIPES_FAILED'})

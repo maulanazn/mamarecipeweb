@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { registerAction } from '../../redux/actions/AuthAction.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { BounceLoader } from 'react-spinners';
+import { Link } from 'react-router-dom';
 
 export default function RegisterPage() {
     const navigate = useNavigate();
@@ -15,9 +16,10 @@ export default function RegisterPage() {
         email: '',
         password: ''
     });
-
+    
     const registerUser = (e) => {
         e.preventDefault();
+        if (userData.name.match(/\s/g)) return alert("You CAN'T use space / whitespace in your username, please use another character");
         dispatch(registerAction(userData, navigate))
     }
     
@@ -71,7 +73,7 @@ export default function RegisterPage() {
                     <button type="submit">Register Account</button>
                 </form>
             </section>
-            <p className="question-text">Already have account? <a className="link" href="login.html">Log in Here</a></p>
+            <p className="question-text">Already have account? <Link className="link" to={'/auth/login'}>Log in Here</Link></p>
         </div>
     )
 }
