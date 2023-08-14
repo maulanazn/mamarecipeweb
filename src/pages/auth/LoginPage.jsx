@@ -4,7 +4,7 @@ import './../assets/css/login.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {loginAction} from './../../redux/actions/AuthAction.js';
 import { Link } from 'react-router-dom';
-import { PacmanLoader } from 'react-spinners';
+import { BounceLoader } from 'react-spinners';
 
 export default function LoginPage() {
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ export default function LoginPage() {
                 <p id="info">Log in into your existing account</p>
             </header>
 
-            {isLoading && <PacmanLoader color="#36d7b7" />}
+            {isLoading && <BounceLoader color='#000000' cssOverride={{marginLeft: '100vh'}}/>}
             {errorMessage && <h1>Ada yang salah</h1>}
 
             <section className="form">

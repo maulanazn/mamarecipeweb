@@ -3,7 +3,7 @@ import './../assets/css/register.css';
 import { useNavigate } from 'react-router';
 import { registerAction } from '../../redux/actions/AuthAction.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { PacmanLoader } from 'react-spinners';
+import { BounceLoader } from 'react-spinners';
 
 export default function RegisterPage() {
     const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function RegisterPage() {
                 <p id="info">Create new account to access all features</p>
             </header>
 
-            {isLoading && <PacmanLoader color="#36d7b7" />}
+            {isLoading && <BounceLoader color='#000000' cssOverride={{marginLeft: '100vh'}}/>}
 
             <section className="form">
                 <form onSubmit={registerUser}>
