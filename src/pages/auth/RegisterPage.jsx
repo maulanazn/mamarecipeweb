@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import './../assets/css/register.css';
-import { useNavigate } from 'react-router';
 import { registerAction } from '../../redux/actions/AuthAction.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Alert from './../component/Alert'
 import { BounceLoader } from 'react-spinners';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function RegisterPage() {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const {isError, errorMessage, isLoading} = useSelector(state => state.register);
     const [userData, setUserData] = useState({
@@ -19,8 +19,10 @@ export default function RegisterPage() {
     
     const registerUser = (e) => {
         e.preventDefault();
-        dispatch(registerAction(userData, navigate))
+        dispatch(registerAction(userData))
     }
+
+    const afterRegister = () => toast("VERIFY YOUR EMAIL!!!!!!!!!")
     
     const onUserChange = (e) => {
         setUserData({
@@ -36,6 +38,8 @@ export default function RegisterPage() {
                 <p id="title-motto">Lets Get Started!</p>
                 <p id="info">Create new account to access all features</p>
             </header>
+
+            <ToastContainer autoClose={200}/>
 
             {isError && errorMessage && <Alert alerttype='danger' message={errorMessage} />}
             {isLoading && <BounceLoader color='#000000' cssOverride={{marginLeft: '100vh'}}/>}
@@ -71,7 +75,7 @@ export default function RegisterPage() {
                     </label>
                     <br/>
                 
-                    <button type="submit">Register Account</button>
+                    <button type="submit" onClick={afterRegister}>Register Account</button>
                 </form>
             </section>
             <p className="question-text">Already have account? <Link className="link" to={'/auth/login'}>Log in Here</Link></p>

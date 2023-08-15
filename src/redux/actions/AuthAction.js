@@ -20,15 +20,13 @@ export const loginAction = (data, navigate) =>
         }
     }
 
-export const registerAction = (data, navigate) =>
+export const registerAction = (data) =>
     async (dispatch) => {
         try {
             dispatch({type: 'REGISTER_PENDING'})
 
             const result = await axios.post(`${URL}/register`, data);
-
             dispatch({payload: result.data.data, type: 'REGISTER_SUCCESS'})
-            navigate('/auth/login');
         } catch (error) {
             dispatch({payload: error.response.data.message, type: 'REGISTER_FAILED'})
             console.error(error.message);
