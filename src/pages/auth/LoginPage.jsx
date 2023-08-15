@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {loginAction} from './../../redux/actions/AuthAction.js';
 import { Link } from 'react-router-dom';
 import { BounceLoader } from 'react-spinners';
+import Alert from '../component/Alert';
 
 export default function LoginPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {errorMessage, isLoading} = useSelector(state => state.login);
+    const {errorMessage, isError, isLoading} = useSelector(state => state.login);
     const [dataLogin, handleDataLogin] = useState({
         email: '',
         password: ''
@@ -36,7 +37,8 @@ export default function LoginPage() {
             </header>
 
             {isLoading && <BounceLoader color='#000000' cssOverride={{marginLeft: '100vh'}}/>}
-            {errorMessage && <h1>Ada yang salah</h1>}
+            {!isLoading && <BounceLoader color='#000000' cssOverride={{marginLeft: '100vh'}} loading={false}/>}
+            {isError && errorMessage && <Alert alerttype='danger' message={errorMessage} />}
 
             <section className="form">
                 <form onSubmit={loginUser}>

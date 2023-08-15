@@ -3,14 +3,14 @@ import './../assets/css/register.css';
 import { useNavigate } from 'react-router';
 import { registerAction } from '../../redux/actions/AuthAction.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { BounceLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
+import Alert from './../component/Alert'
+import { BounceLoader } from 'react-spinners';
 
 export default function RegisterPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {register} = useSelector(state => state);
-    const {isLoading} = register;
+    const {isError, errorMessage, isLoading} = useSelector(state => state.register);
     const [userData, setUserData] = useState({
         name: '',
         email: '',
@@ -19,7 +19,6 @@ export default function RegisterPage() {
     
     const registerUser = (e) => {
         e.preventDefault();
-        if (userData.name.match(/\s/g)) return alert("You CAN'T use space / whitespace in your username, please use another character");
         dispatch(registerAction(userData, navigate))
     }
     
@@ -38,7 +37,9 @@ export default function RegisterPage() {
                 <p id="info">Create new account to access all features</p>
             </header>
 
+            {isError && errorMessage && <Alert alerttype='danger' message={errorMessage} />}
             {isLoading && <BounceLoader color='#000000' cssOverride={{marginLeft: '100vh'}}/>}
+            {!isLoading && <BounceLoader color='#000000' cssOverride={{marginLeft: '100vh'}} loading={false}/>}
 
             <section className="form">
                 <form onSubmit={registerUser}>

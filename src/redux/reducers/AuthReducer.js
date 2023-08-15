@@ -12,6 +12,8 @@ export const loginReducer = (state = initialState, action) => {
         return {
             ...state,
             data: action.payload,
+            isLoading: false,
+            isError: false,
             errorMessage: ''
         }
     }
@@ -20,6 +22,8 @@ export const loginReducer = (state = initialState, action) => {
         return {
             ...state,
             data: null,
+            isLoading: false,
+            isError: true,
             errorMessage: action.payload
         }
     }
@@ -39,6 +43,8 @@ export const registerReducer = (state = initialState, action) => {
         return {
             ...state,
             data: action.payload,
+            isLoading: false,
+            isError: true,
             errorMessage: ''
         }
     }
@@ -47,6 +53,8 @@ export const registerReducer = (state = initialState, action) => {
         return {
             ...state,
             data: null,
+            isLoading: false,
+            isError: true,
             errorMessage: action.payload
         }
     }
