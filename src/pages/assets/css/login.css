@@ -35,6 +35,10 @@
         flex-direction: column;
         margin-left: 15vh;
     }
+
+    form .check-box {
+        margin-top: 40vh;
+    }
     
     .label-email, .label-password {
         font-size: 16px;
@@ -48,6 +52,7 @@
         margin: 0 0 40px 0;
         border: 1px solid #8692A6;
         border-radius: 4px;
+        margin-left: -20vh;
     }
     
     input[name="email"]:focus, input[name="password"]:focus {
@@ -58,11 +63,11 @@
         padding: 1rem;
     }
     
-    .check-box {
+    form .check-box {
         display: block;
         position: absolute;
-        padding-left: 35px;
-        margin-bottom: 22px;
+        margin-left: -23vh;
+        margin-top: 32vh;
         font-size: 16px;
     }
     
@@ -112,11 +117,11 @@
         transform: rotate(45deg);
     }
     
-    button {    
-        margin-top: 30px;
-        padding: 15px 11.2rem;
+    form button {    
+        margin-top: 10vh;
         font-size: 16px;
-        width: 25%;
+        margin-left: -24vh;
+        width: 5%;
         background-color: #EFC81A;
         display: inline-block;
         text-align: center;
@@ -192,7 +197,7 @@
         display: block;
         position: absolute;
         padding-left: 35px;
-        margin-bottom: 22px;
+        margin-top: 52vh;
         font-size: 16px;
     }
     
@@ -289,27 +294,27 @@
     }
     
     .form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-top: 10vh;
+        margin-top: -10vh;
+    }
+
+    form label {
+        margin-left: -79vh;
+    }
+
+    form .check-box {
+        margin-left: -40vh;
+        margin-top: 40vh;
     }
     
-    .label-email, .label-password {
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 24px;
+    input[name="email"] {
+        margin-left: 10vh;
     }
-    
-    input[name="email"], input[name="password"] {
-        width: 30rem;
-        height: 3rem;
-        margin: 0 0 40px 0;
-        border: 1px solid #8692A6;
-        border-radius: 4px;
+
+    input[name="password"] {
+        margin-left: -15vh;
+        width: 120%;
     }
-    
+
     input[name="email"]:focus, input[name="password"]:focus {
         filter: drop-shadow(1px 5px 3px #303030);
     }
@@ -322,7 +327,7 @@
         display: block;
         position: absolute;
         padding-left: 35px;
-        margin-bottom: 22px;
+        margin-top: 40vh;
         font-size: 16px;
     }
     

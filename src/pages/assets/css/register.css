@@ -314,15 +314,15 @@
         padding: 1rem;
     }
     
-    .check-box {
+    form .check-box-register {
         display: block;
         position: absolute;
-        padding-left: 35px;
-        margin-bottom: 22px;
+        margin-left: -35vh;
+        margin-top: 62vh;
         font-size: 16px;
     }
     
-    .check-box input {
+    .check-box-register input {
         position: absolute;
         height: 0;
         width: 0;
@@ -334,15 +334,16 @@
         left: 0;
         height: 25px;
         width: 25px;
+        margin-left: -6vh;
         background-color: #eee;
         border-radius: 4px;
     }
     
-    .check-box:hover input ~ .check-mark {
+    .check-box-register:hover input ~ .check-mark {
         background-color: #ccc;
     }
     
-    .check-box input:checked ~ .check-mark {
+    .check-box-register input:checked ~ .check-mark {
         background-color: #EFC81A;
     }
     
@@ -352,11 +353,11 @@
         display: none;
     }
     
-    .check-box input:checked ~ .check-mark:after {
+    .check-box-register input:checked ~ .check-mark:after {
         display: block;
     }
     
-    .check-box .check-mark:after {
+    .check-box-register .check-mark:after {
         left: 9px;
         top: 5px;
         width: 5px;

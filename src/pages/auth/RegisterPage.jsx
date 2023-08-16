@@ -68,7 +68,7 @@ export default function RegisterPage() {
                     <input required type="password" value={userData.password} name="password" id="password" onChange={onUserChange} />
                     <br/>
                     
-                    <label className="check-box">
+                    <label className="check-box-register">
                         <input required type="checkbox" name="agree-terms"/>
                         <span className="check-mark"></span>
                         I agree to terms & conditions
