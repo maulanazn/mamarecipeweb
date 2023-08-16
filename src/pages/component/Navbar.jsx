@@ -32,9 +32,9 @@ export default function Navbar() {
                             <>
                                 <div className="vr bg-warning profile d-flex"></div>
                                 <mark className="col bg-transparent profile-wrapper me-2">
-                                    <a href="../profile/detailprofile.html">
+                                    <Link to={'/edit-account'}>
                                         <img loading="eager" width="50" height="50" className="ms-5" decoding="async" id="photo-profile" src={localStorage.getItem("photo") ? true : defaultPhoto} alt={localStorage.getItem("name")}/>
-                                    </a>
+                                    </Link>
                                 </mark>
                                 <mark className="col bg-transparent logout-detail me-5">
                                     <p className="col">{localStorage.getItem("name")}</p>

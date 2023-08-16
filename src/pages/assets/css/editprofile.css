@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+:root {
+    --yellow: #EFC81A;
+}
+
+* {
+    box-sizing: border-box;
+    background-color: #ffffff;
+    font-family: 'Poppins';
+}
+
+@media (max-width: 575px) {
+    #profile-image {
+        height: 250px;
+        width: 250px;
+        border-radius: 76px;
+        background-color: transparent;
+        margin-top: 25vh;
+        margin-left: 14vh;
+    }
+    
+    .change-profile-section {
+        margin-top: -10vh;
+    }
+    
+    form {
+        display: grid;
+        place-items: center;
+        margin-left: 10vh;
+        gap: 12px;
+    }
+    
+    form .photo-file input[type="file"] {
+        display: none;
+    }
+    
+    form .photo-file label {
+        color: black;
+        margin-top: 1vh;
+        margin-bottom: 10vh;
+        margin-left: -1vh;
+    }
+    
+    form #name {
+        width: 40vh;
+        height: 8vh;
+        margin-left: -50px;
+        border: 1px solid #999999;
+        border-radius: 4px;
+        color: #383636;
+        padding: 2vh;
+    }
+    
+    form #email {
+        width: 40vh;
+        height: 8vh;
+        margin-left: -120px;
+        border: 1px solid #999999;
+        border-radius: 4px;
+        color: #383636;
+        padding: 2vh;
+    }
+    
+    form button {
+        width: 40vh;
+        height: 8vh;
+        margin-left: -10px;
+        color: white;
+        background-color: #EFC81A;
+        border: 1px solid #EFC81A;
+        margin-top: 10vh;
+        border-radius: 4px;
+    }
+    
+    .question-text {
+        text-align: center;
+        font-size: 13px;
+        color: #999999;
+        margin-right: 35vh;
+        margin-top: 5vh;
+    }
+    
+    .question-text .link {
+        color:#EFC81A; 
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 576px) {
+    #profile-image {
+        height: 250px;
+        width: 250px;
+        border-radius: 76px;
+        background-color: transparent;
+        margin-top: 25vh;
+        margin-left: 22vh;
+    }
+    
+    .change-profile-section {
+        margin-top: -10vh;
+    }
+    
+    form {
+        display: grid;
+        place-items: center;
+        margin-left: 10vh;
+        gap: 12px;
+    }
+    
+    form .photo-file input[type="file"] {
+        display: none;
+    }
+    
+    form .photo-file label {
+        color: black;
+        margin-top: 1vh;
+        margin-bottom: 10vh;
+        margin-left: -20vh;
+    }
+    
+    form #name {
+        width: 60vh;
+        height: 8vh;
+        margin-left: -100px;
+        border: 1px solid #999999;
+        border-radius: 4px;
+        color: #383636;
+        padding: 2vh;
+    }
+    
+    form #email {
+        width: 60vh;
+        height: 8vh;
+        margin-left: -100px;
+        border: 1px solid #999999;
+        border-radius: 4px;
+        color: #383636;
+        padding: 2vh;
+    }
+    
+    form button {
+        width: 60vh;
+        height: 8vh;
+        margin-left: -100px;
+        color: white;
+        background-color: #EFC81A;
+        border: 1px solid #EFC81A;
+        margin-top: 10vh;
+        border-radius: 4px;
+    }
+    
+    .question-text {
+        text-align: center;
+        font-size: 13px;
+        color: #999999;
+        margin-right: 35vh;
+        margin-top: 5vh;
+    }
+    
+    .question-text .link {
+        color:#EFC81A; 
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 992px) {
+    #profile-image {
+        height: 250px;
+        width: 250px;
+        border-radius: 76px;
+        background-color: transparent;
+        margin-top: 25vh;
+        margin-left: 85vh;
+    }
+
+    .change-profile-section {
+        margin-top: -10vh;
+    }
+    
+    form {
+        display: grid;
+        place-items: center;
+        margin-left: 10vh;
+        gap: 12px;
+    }
+    
+    form .photo-file input[type="file"] {
+        display: none;
+    }
+    
+    form .photo-file label {
+        color: black;
+        margin-top: 1vh;
+        margin-bottom: 10vh;
+        margin-left: 10vh;
+    }
+    
+    form #name {
+        width: 80vh;
+        height: 8vh;
+        border: 1px solid #999999;
+        border-radius: 4px;
+        color: #383636;
+        padding: 2vh;
+    }
+    
+    form #email {
+        width: 80vh;
+        height: 8vh;
+        border: 1px solid #999999;
+        border-radius: 4px;
+        color: #383636;
+        padding: 2vh;
+    }
+    
+    .change-profile-section  button {
+        width: 80vh;
+        height: 8vh;
+        color: white;
+        background-color: #EFC81A;
+        border: 1px solid #EFC81A;
+        margin-top: -1vh;
+        margin-left: -10vh;
+        border-radius: 4px;
+    }
+    
+    .question-text {
+        text-align: center;
+        font-size: 13px;
+        color: #999999;
+        margin-right: 35vh;
+        margin-top: 5vh;
+    }
+    
+    .question-text .link {
+        color:#EFC81A; 
+        font-size: 13px;
+    }
+}
