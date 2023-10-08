@@ -11,7 +11,7 @@ export default function DetailRecipe() {
     const {id} = useParams();
     const dispatch = useDispatch();
     const recipe = useSelector(state => state.recipe);
-     
+    
     useEffect(() => {
         dispatch(getRecipeAction(id))
     }, [])
@@ -42,15 +42,15 @@ export default function DetailRecipe() {
             </section>
 
             <section className="container">
-                <h1 className="text-center">{recipe.title}</h1>
+                <h1 className="text-center">{recipe.data.title}</h1>
                 <Link to="#" className="image-detail-link">
-                    <img src={recipe.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={recipe.title}/>
+                    <img src={recipe.data.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={recipe.data.title}/>
                 </Link>
                 <p className="ingredient me-5 fs-4">
                 ingredient: <br/>
-                {recipe.ingredients}
+                {recipe.data.ingredients}
                 </p>
-                <blockquote className="fs-4 ms-5">{recipe.category}</blockquote>
+                <blockquote className="fs-4 ms-5">{recipe.data.category}</blockquote>
             </section>
         
             <section className="reaction me-5">
