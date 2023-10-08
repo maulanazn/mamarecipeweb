@@ -47,6 +47,7 @@
 ```sh
     npm start --> node index.js
 ```
+7. Alternative, you can use bun, but still need the nodejs
 
 ## Contributing
 
