@@ -3,7 +3,7 @@ import './../assets/css/menurecipe.css';
 import Navbar from './../component/Navbar';
 import Footer from './../component/Footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { categorizedRecipeAction, getAllRecipeAction, searchRecipeAction, sortingRecipeAction } from '../../redux/actions/RecipeAction.js';
+import { categorizedRecipeAction, countAllRecipeAction, getAllRecipeAction, searchRecipeAction, sortingRecipeAction } from '../../redux/actions/RecipeAction.js';
 import MappedRecipeData from '../component/AllRecipeComp';
 
 export default function RecipePage() {

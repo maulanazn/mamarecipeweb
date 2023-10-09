@@ -3,7 +3,7 @@ import Footer from './../component/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteRecipeAction, getUserRecipeAction } from '../../redux/actions/RecipeAction.js';
+import { countUserRecipeAction, deleteRecipeAction, getUserRecipeAction } from '../../redux/actions/RecipeAction.js';
 import './../assets/css/detailprofile.css';
 
 export default function DetailProfile() {
@@ -11,6 +11,7 @@ export default function DetailProfile() {
     const dispatch = useDispatch();
     const page = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
+    const count_user_recipe = useSelector(state => state.count_user_recipe);
     const {user_recipe} = useSelector(state => state);
     const {data} = user_recipe;
     
@@ -20,6 +21,7 @@ export default function DetailProfile() {
 
     useEffect(() => {
         dispatch(getUserRecipeAction(localStorage.getItem('name'), currentPage))
+        dispatch(countUserRecipeAction())
     }, [currentPage, localStorage.getItem('name')])
 
     return (
@@ -35,7 +37,7 @@ export default function DetailProfile() {
                 </mark>
                 <mark className="col bg-transparent profile-details">
                     <p className="col">{localStorage.getItem("name")}</p>
-                    <p className="fw-bold">10 recipes</p>
+                    <p className="fw-bold">{count_user_recipe.data.count} recipes</p>
                 </mark>
                 <form className="d-flex" role="search">
                     <mark className="col-2 row bg-transparent reaction-count" style={{textAlign: 'end',  marginLeft: '150vh', marginTop: '-22vh'}}>
