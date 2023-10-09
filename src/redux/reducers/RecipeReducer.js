@@ -27,6 +27,33 @@ export const getAllRecipeReducer = (state = initialState, action) => {
     return state;
 }
 
+export const countAllRecipe = (state = initialState, action) => {
+    if (action.type === 'COUNT_RECIPES_PENDING') {
+        return {
+            ...state,
+            isLoading: true
+        }
+    }
+
+    if (action.type === 'COUNT_RECIPES_SUCCESS') {
+        return {
+            ...state,
+            data: action.payload,
+            errorMessage: ''
+        }
+    }
+
+    if (action.type === 'COUNT_RECIPES_FAILED') {
+        return {
+            ...state,
+            data: null,
+            errorMessage: action.payload
+        }
+    }
+
+    return state;
+}
+
 export const getUserRecipeReducer = (state = initialState, action) => {
     if (action.type === 'USER_RECIPES_PENDING') {
         return {
@@ -44,6 +71,33 @@ export const getUserRecipeReducer = (state = initialState, action) => {
     }
 
     if (action.type === 'USER_RECIPES_FAILED') {
+        return {
+            ...state,
+            data: null,
+            errorMessage: action.payload
+        }
+    }
+
+    return state;
+}
+
+export const countUserRecipe = (state = initialState, action) => {
+    if (action.type === 'COUNT_USER_RECIPES_PENDING') {
+        return {
+            ...state,
+            isLoading: true
+        }
+    }
+
+    if (action.type === 'COUNT_USER_RECIPES_SUCCESS') {
+        return {
+            ...state,
+            data: action.payload,
+            errorMessage: ''
+        }
+    }
+
+    if (action.type === 'COUNT_USER_RECIPES_FAILED') {
         return {
             ...state,
             data: null,

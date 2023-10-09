@@ -14,6 +14,22 @@ export const getAllRecipeAction = (page = 1, limit = 5) =>
         }
     }
 
+export const countAllRecipeAction = () => 
+    async (dispatch) => {
+        try {
+            dispatch({type: 'COUNT_RECIPES_PENDING'})
+            const result = await axios.get(`${URL}/recipe/lists/count`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            dispatch({payload: result.data.data, type: 'COUNT_RECIPES_SUCCESS'})
+        } catch (error) {
+            dispatch({payload: error.response.data.message, type: 'COUNT_RECIPES_FAILED'})
+            console.error(error.message);
+        }
+    }
+
 export const getUserRecipeAction = (user = '', offset = 1) => 
     async (dispatch) => {
         try {
@@ -22,6 +38,22 @@ export const getUserRecipeAction = (user = '', offset = 1) =>
             dispatch({payload: result.data.data, type: 'USER_RECIPES_SUCCESS'})
         } catch (error) {
             dispatch({payload: error.response.data.message, type: 'USER_RECIPES_FAILED'})
+            console.error(error.message);
+        }
+    }
+
+export const countUserRecipeAction = () => 
+    async (dispatch) => {
+        try {
+            dispatch({type: 'COUNT_USER_RECIPES_PENDING'})
+            const result = await axios.get(`${URL}/recipe/user/count`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            dispatch({payload: result.data.data, type: 'COUNT_USER_RECIPES_SUCCESS'})
+        } catch (error) {
+            dispatch({payload: error.response.data.message, type: 'COUNT_USER_RECIPES_FAILED'})
             console.error(error.message);
         }
     }

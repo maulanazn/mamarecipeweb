@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { loginReducer, registerReducer} from "./AuthReducer.js";
-import {deleteRecipeReducer, getAllRecipeReducer, getRecipeReducer, getUserRecipeReducer, postRecipeReducer, updateRecipeReducer} from './../../redux/reducers/RecipeReducer.js';
+import {countAllRecipe, countUserRecipe, deleteRecipeReducer, getAllRecipeReducer, getRecipeReducer, getUserRecipeReducer, postRecipeReducer, updateRecipeReducer} from './../../redux/reducers/RecipeReducer.js';
 
 const rootReducer = combineReducers({
     login: loginReducer,
@@ -10,7 +10,9 @@ const rootReducer = combineReducers({
     recipe: getRecipeReducer,
     post_recipe: postRecipeReducer,
     put_recipe: updateRecipeReducer,
-    delete_recipe: deleteRecipeReducer
+    delete_recipe: deleteRecipeReducer,
+    count_all_recipe: countAllRecipe,
+    count_user_recipe: countUserRecipe
 });
 
 export default rootReducer;
