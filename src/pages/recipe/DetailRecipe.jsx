@@ -5,15 +5,20 @@ import Elephant from '/images/image-3.webp';
 import './../assets/css/detailmenu.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {getRecipeAction} from './../../redux/actions/RecipeAction.js';
+import {countUserRecipeAction, getRecipeAction} from './../../redux/actions/RecipeAction.js';
 
 export default function DetailRecipe() {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const recipe = useSelector(state => state.recipe);
+    const recipe = useSelector(state => state.recipe.data);
+    const count_user_recipe = useSelector(state => state.count_user_recipe);
     
     useEffect(() => {
         dispatch(getRecipeAction(id))
+    }, [])
+
+    useEffect(() => {
+        dispatch(countUserRecipeAction())
     }, [])
 
     return (
@@ -30,7 +35,7 @@ export default function DetailRecipe() {
                 </mark>
                 <mark className="col bg-transparent profile-details">
                     <p className="col">Mr. Elephant</p>
-                    <p className="fw-bold">10 recipes</p>
+                    <p className="fw-bold">{count_user_recipe?.data?.count} recipes</p>
                 </mark>
                 <form className="d-flex" role="search">
                     <mark className="col-2 row bg-transparent reaction-count" style={{textAlign: 'end',  marginLeft: '150vh', marginTop: '-22vh'}}>
@@ -42,15 +47,15 @@ export default function DetailRecipe() {
             </section>
 
             <section className="container">
-                <h1 className="text-center">{recipe.data.title}</h1>
+                <h1 className="text-center">{recipe.title}</h1>
                 <Link to="#" className="image-detail-link">
-                    <img src={recipe.data.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={recipe.data.title}/>
+                    <img src={recipe.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={recipe.title}/>
                 </Link>
                 <p className="ingredient me-5 fs-4">
                 ingredient: <br/>
-                {recipe.data.ingredients}
+                {recipe.ingredients}
                 </p>
-                <blockquote className="fs-4 ms-5">{recipe.data.category}</blockquote>
+                <blockquote className="fs-4 ms-5">{recipe.category}</blockquote>
             </section>
         
             <section className="reaction me-5">

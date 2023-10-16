@@ -67,6 +67,8 @@ Contributions are what make the open source community such an amazing place to b
 | ![homepage](public/images/homepage-recipe.png) | HomePage |
 | ![all recipe](public/images/recipe-page.png) | All Recipe | 
 | ![user homepage recipe](public/images/user-homepage.png) | User Homepage Recipe | 
+| ![Detail recipe](public/images/detail-recipe.png) | Detail Recipe | 
+| ![Recipe By category](public/images/recipes-by-category.png) | Recipe By category | 
 
 ## Related Project
 * [`Mama Recipes Demo`](https://mamarecipeweb.pages.dev/)

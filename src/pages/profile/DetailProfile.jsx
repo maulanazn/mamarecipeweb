@@ -21,8 +21,11 @@ export default function DetailProfile() {
 
     useEffect(() => {
         dispatch(getUserRecipeAction(localStorage.getItem('name'), currentPage))
-        dispatch(countUserRecipeAction())
     }, [currentPage, localStorage.getItem('name')])
+    
+    useEffect(() => {
+        dispatch(countUserRecipeAction())
+    }, [])
 
     return (
         <>
@@ -37,7 +40,7 @@ export default function DetailProfile() {
                 </mark>
                 <mark className="col bg-transparent profile-details">
                     <p className="col">{localStorage.getItem("name")}</p>
-                    <p className="fw-bold">{count_user_recipe.data.count} recipes</p>
+                    <p className="fw-bold">{count_user_recipe?.data?.count} recipes</p>
                 </mark>
                 <form className="d-flex" role="search">
                     <mark className="col-2 row bg-transparent reaction-count" style={{textAlign: 'end',  marginLeft: '150vh', marginTop: '-22vh'}}>

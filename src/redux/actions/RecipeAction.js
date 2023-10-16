@@ -64,6 +64,7 @@ export const getRecipeAction = (id) =>
             dispatch({type: 'GET_RECIPE_PENDING'})
             const result = await axios.get(`${URL}/recipe/${id}/detail`, {headers})
             dispatch({payload: result.data.data, type: 'GET_RECIPE_SUCCESS'})
+            return result.data.data
         } catch (error) {
             dispatch({payload: error.response.data.message, type: 'GET_RECIPE_FAILED'})
             console.error(error.message);
